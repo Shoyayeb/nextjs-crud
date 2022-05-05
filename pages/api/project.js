@@ -9,8 +9,20 @@ mongoose.connect('mongodb://localhost:27017/projects').then(result => {
 });
 
 export default async function handler(req, res) {
-    const project = await Project.create({
-        name: "name"
-    })
-    res.json({ hello: 'world' });
+    console.log('post', req.body);
+
+    if (req.method === 'POST') {
+        const project = await Project.create({
+            name: req.body.name,
+            type: req.body.type,
+            color: req.body.color,
+            admin: req.body.admin,
+            users: req.body.users,
+            created_at: req.body.created_at,
+            updated_at: req.body.updated_at
+        });
+        res.json({ message: "ok", status: 200 });
+    } else {
+        res.json({ message: "Valo kaj kortesen, kore jan" })
+    }
 }

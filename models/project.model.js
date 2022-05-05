@@ -6,10 +6,9 @@ const Project = new mongoose.Schema({
     type: { type: String, required: true },
     color: { type: String, required: true },
     admin: { type: Boolean, required: true },
-
+    users: { type: Array, required: true },
     created_at: { type: Date, required: true },
     updated_at: { type: Date, default: Date.now, required: true },
-    users: { type: Array, required: true },
 
 }, { collection: 'projects' });
 

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState } from 'react';
 import styles from '../styles/create.module.css'
 
@@ -16,8 +17,24 @@ const Create = () => {
         e.preventDefault();
         if (!data.color) data.color = "Blue"
         if (!data.type) data.type = "Develop"
+        data.users = [
+            {
+                "name": "shafin",
+                "email": "shafin@gmail.com",
+                "password": "shafinpassword"
+            },
+            {
+                "name": "admin",
+                "email": "admin@gmail.com",
+                "password": "adminpassword",
+                admin: true
+            }
+        ];
         data.created_at = new Date();
         data.updated_at = new Date();
+        if (data.name && data.type) {
+            axios.post('/api/project', data)
+        }
         console.log(data);
     }
     return (
@@ -25,8 +42,6 @@ const Create = () => {
             <div className={styles.form_style_2}>
                 <div className={styles.form_style_2_heading}>Provide your information</div>
                 <form onSubmit={handleSubmit}>
-
-
                     <label htmlFor="name">
                         <span>
                             Name
@@ -34,8 +49,6 @@ const Create = () => {
                         </span>
                         <input type="text" onChange={handleOnChange} className={styles.input_field} name="name" />
                     </label>
-
-
                     <label htmlFor="color">
                         <span>
                             Color <span className="required">*</span>
@@ -46,8 +59,6 @@ const Create = () => {
                             <option value="Red">Red</option>
                         </select>
                     </label>
-
-
                     <label htmlFor="type">
                         <span>
                             Type</span>
@@ -57,23 +68,17 @@ const Create = () => {
                             <option value="Design">Design</option>
                         </select>
                     </label>
-
-
                     <label htmlFor="admin">
                         <span>
                             Admin</span>
                         <input onChange={handleOnChange} type="checkbox" name="admin" />
                     </label>
-
-
-
-                    <label htmlFor="field5">
+                    <label htmlFor="notes">
                         <span>
                             Message <span className="required">*</span>
                         </span>
-                        <textarea onChange={handleOnChange} name="field5" className="textarea_field"></textarea>
+                        <textarea onChange={handleOnChange} name="notes" className="textarea_field"></textarea>
                     </label>
-
                     <label>
                         <span> </span>
                         <input type="submit" value="Submit" />
