@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost:27017/projects').then(result => {
 
 export default async function handler(req, res) {
     console.log('post', req.body);
-
+    // set time from here
     if (req.method === 'POST') {
         const project = await Project.create({
             name: req.body.name,
@@ -23,6 +23,6 @@ export default async function handler(req, res) {
         });
         res.json({ message: "ok", status: 200 });
     } else {
-        res.json({ message: "Valo kaj kortesen, kore jan" })
+        res.json({ message: "error" })
     }
 }

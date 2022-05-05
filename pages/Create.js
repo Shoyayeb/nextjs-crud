@@ -19,23 +19,32 @@ const Create = () => {
         if (!data.type) data.type = "Develop"
         data.users = [
             {
+                "uid": "1",
                 "name": "shafin",
                 "email": "shafin@gmail.com",
                 "password": "shafinpassword"
             },
             {
-                "name": "admin",
-                "email": "admin@gmail.com",
-                "password": "adminpassword",
-                admin: true
+                "uid": "2",
+                "name": "shafin2",
+                "email": "shafin2@gmail.com",
+                "password": "shafin2password"
             }
         ];
+        data.admin = {
+            "name": "admin",
+            "email": "admin@gmail.com",
+            "password": "adminpassword",
+            admin: true
+        }
         data.created_at = new Date();
         data.updated_at = new Date();
         if (data.name && data.type) {
-            axios.post('/api/project', data)
+            axios.post('/api/create', data)
+        } else {
+            alert("Enter all the information please")
         }
-        console.log(data);
+        // console.log(data);
     }
     return (
         <div>
@@ -68,11 +77,11 @@ const Create = () => {
                             <option value="Design">Design</option>
                         </select>
                     </label>
-                    <label htmlFor="admin">
+                    {/* <label htmlFor="admin">
                         <span>
                             Admin</span>
                         <input onChange={handleOnChange} type="checkbox" name="admin" />
-                    </label>
+                    </label> */}
                     <label htmlFor="notes">
                         <span>
                             Message <span className="required">*</span>
