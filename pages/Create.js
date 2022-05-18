@@ -4,8 +4,8 @@ import styles from '../styles/create.module.css'
 
 const Create = () => {
     const [data, setData] = useState({});
+    const [awsData, setAwsData] = useState('');
     console.log(data);
-
     const handleOnChange = (e) => {
         const field = e.target.name;
         const value = e.target.value;
@@ -46,6 +46,14 @@ const Create = () => {
         }
         // console.log(data);
     }
+
+    const handleAwsSubmit = (e) => {
+
+        e.preventDefault();
+        console.log();
+        axios.post('/api/aws', awsData)
+
+    }
     return (
         <div>
             <div className={styles.form_style_2}>
@@ -77,16 +85,26 @@ const Create = () => {
                             <option value="Design">Design</option>
                         </select>
                     </label>
-                    {/* <label htmlFor="admin">
-                        <span>
-                            Admin</span>
-                        <input onChange={handleOnChange} type="checkbox" name="admin" />
-                    </label> */}
+
                     <label htmlFor="notes">
                         <span>
                             Message <span className="required">*</span>
                         </span>
                         <textarea onChange={handleOnChange} name="notes" className="textarea_field"></textarea>
+                    </label>
+                    <label>
+                        <span> </span>
+                        <input type="submit" value="Submit" />
+                    </label>
+                </form>
+
+
+                <form onSubmit={handleAwsSubmit}>
+
+                    <label htmlFor="file">
+                        <span>
+                            Upload file</span>
+                        <input type="file" name="file" id="file" />
                     </label>
                     <label>
                         <span> </span>

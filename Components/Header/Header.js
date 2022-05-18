@@ -6,7 +6,7 @@ const Header = () => {
             <li className={styles.li}>
                 <Link href="/View">
                     <a className={styles.link}>
-                        Home
+                        Search
                     </a>
                 </Link>
             </li>
